@@ -11,6 +11,4 @@ Route::get('/', function () {
     ]);
 });
 
-Route::post("/exercise-1-artwork-version" , [Excercise_1::class, 'ArtworkVersion'])->name('exercise-1-artwork-version');
-
 require __DIR__.'/auth.php';
