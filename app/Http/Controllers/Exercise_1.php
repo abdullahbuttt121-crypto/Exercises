@@ -7,9 +7,6 @@ use Illuminate\Http\Request;
 class Exercise_1 extends Controller
 {   
     
-    // use App\Http\Controllers\Exercise_1;
-    // Route::post("/exercise-1-artwork-version" , [Exercise_1::class, 'ArtworkVersion'])->name('exercise-1-artwork-version');
-
     public function ArtworkVersion(Request $request) {
         $request->validate([
             'input' => 'required|array',
