@@ -9,6 +9,7 @@ class Exercise_3 extends Controller
     public function cartValidator(Request $request){
         $request->validate([
             'input' => 'required|array',
+            "input.*.id" => 'required|integer',
             'input.*.required' => 'required|boolean',
             'input.*.done' => 'required|boolean',
         ]);
