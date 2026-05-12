@@ -48,7 +48,7 @@ class Exercise_11 extends Controller
            return response()->json([
             "success" => false,
             "data" => [],
-            "error" => "Some Products have both Allowed and Blocked Tags"
+            "error" => "No Product Will be Visible to the Customer based on their Tags"
         ]);
         }
         return response()->json([
