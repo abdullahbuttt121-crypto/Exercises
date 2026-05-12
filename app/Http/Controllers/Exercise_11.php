@@ -23,31 +23,31 @@ class Exercise_11 extends Controller
 
         $trimTags = [];
         foreach($customer_tags as $tag){
-            foreach($products as $product){
+            foreach($products as $key => $product){
+                logger("block $key " . json_encode($product['block']));
                 foreach($product['allow'] as $allow){
-                    if($tag === $allow){
+                    if($tag === $allow && collect($product['block'])->doesntContain($tag , "!=" , $tag)){
                         $trimTags["Allowed"][] = $tag;
                         $trimTags["Allowed_id"][] = $product['id'];
                     }
                 }
-                foreach($product['block'] as $block){
-                    if($tag === $block){
-                        $trimTags["Blocked"][] = $tag;
-                        $trimTags["Blocked_id"][] = $product['id'];
-                    }
-                }
+                // foreach($product['block'] as $block){
+                //     if($tag === $block){
+                //         $trimTags["Blocked"][] = $tag;
+                //         $trimTags["Blocked_id"][] = $product['id'];
+                //     }
+                // }
             }   
         }
 
-        $collection = collect($trimTags["Allowed"]);
-        $intersect = $collection->intersect($trimTags["Blocked"]);
-        $test = $intersect->all();
+        // $collection = collect($trimTags["Allowed"]);
+        // $intersect = $collection->intersect($trimTags["Blocked"]);
+        // $test = $intersect->all();
         
-        if(count($test) > 0){
+        if($trimTags == null){
            return response()->json([
             "success" => false,
-            "message"  => "Please Remove the Common Tags from either Allowed or Blocked Tags to Avoid Conflict", 
-            "data" => [ "Common Tags" =>  collect($test)->unique()->values()],
+            "data" => [],
             "error" => "Some Products have both Allowed and Blocked Tags"
         ]);
         }
