@@ -4,6 +4,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Exercise_1;
 use App\Http\Controllers\Exercise_10;
+use App\Http\Controllers\Exercise_11;
 use App\Http\Controllers\Exercise_2;
 use App\Http\Controllers\Exercise_3;
 use App\Http\Controllers\Exercise_4;
@@ -29,3 +30,4 @@ Route::post("/exercise-7-inventory", [Exercise_7::class , "inventoryManagement"]
 Route::post("/exercise-8-shipment", [Exercise_8::class , "shipmentFlow"]);
 Route::post("/exercise-9-webhook", [Exercise_9::class , "webhookHandler"]);
 Route::post("/exercise-10-quote-expiry", [Exercise_10::class , "dateChecker"]);
+Route::post("/exercise-11-product-visibility", [Exercise_11::class , "productVisibility"]);
