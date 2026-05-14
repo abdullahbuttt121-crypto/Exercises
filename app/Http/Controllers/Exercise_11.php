@@ -45,12 +45,13 @@ class Exercise_11 extends Controller
         // $test = $intersect->all();
         
         if($trimTags == null){
-           return response()->json([
-            "success" => false,
-            "data" => [],
-            "error" => "No Product Will be Visible to the Customer based on their Tags"
-        ]);
+            return response()->json([
+                "success" => true,
+                "data" => [],
+                "error" => "No Product Will be Visible to the Customer based on their Tags"
+            ]);
         }
+        
         return response()->json([
             "success" => true,
             "message" => "These Product Will be Visible to the Customer based on their Tags",
