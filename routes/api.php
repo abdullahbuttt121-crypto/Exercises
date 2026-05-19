@@ -1,6 +1,7 @@
 <?php
 
 
+use App\Http\Controllers\Exercise_16;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Exercise_1;
 use App\Http\Controllers\Exercise_10;
@@ -8,6 +9,7 @@ use App\Http\Controllers\Exercise_11;
 use App\Http\Controllers\Exercise_12;
 use App\Http\Controllers\Exercise_13;
 use App\Http\Controllers\Exercise_14;
+use App\Http\Controllers\Exercise_15;
 use App\Http\Controllers\Exercise_2;
 use App\Http\Controllers\Exercise_3;
 use App\Http\Controllers\Exercise_4;
@@ -37,3 +39,5 @@ Route::post("/exercise-11-product-visibility", [Exercise_11::class , "productVis
 Route::post("/exercise-12-bundle-pricing", [Exercise_12::class , "bundlePrice"]);
 Route::post("/exercise-13-cart-merge", [Exercise_13::class , "cartMerge"]);
 Route::post("/exercise-14-upsell", [Exercise_14::class , "upsellHandler"]);
+Route::post("/exercise-15-shipping-rule", [Exercise_15::class , "shippingRuleHandler"]);
+Route::post("/exercise-16-fraud-check", [Exercise_16::class , "fraudCheckHandler"]);
