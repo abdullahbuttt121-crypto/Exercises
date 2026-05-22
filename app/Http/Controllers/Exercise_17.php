@@ -4,60 +4,52 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+
 class Exercise_17 extends Controller
 {
     public function PriceShopifyAdjustment(Request $request)
     {
         $request->validate([
-            "input" => "required",
-            "input.adjustment_value" => "required|numeric",
-            "input.prices" => "required|array",
-            "input.prices.*" => "required|array",
+            'input.prices' => 'required|array|min:1',
+            'input.prices.*' => 'required|array|min:1',
+            'input.prices.*.*' => 'required|integer',
+            'input.adjustment_value' => 'required|integer|min:1',
         ]);
+        // Flatten matrix
+        $prices = collect($request->input('input.prices'))
+            ->flatten()
+            ->sort()
+            ->values();
 
-        $prices = $request->input('input.prices');
-        $x = $request->input('input.adjustment_value');
+        $adjustmentValue = $request->input('input.adjustment_value');
 
-
-        $flatPrices = [];
-
-        foreach ($prices as $row) {
-            foreach ($row as $price) {
-                $flatPrices[] = $price;
-            }
-        }
-
-
-        $base = $flatPrices[0];
-
-        foreach ($flatPrices as $price) {
-            if (abs($price - $base) % $x != 0) {
+        $basedNode = $prices[0];
+        // logger("basedNode => " . $basedNode);
+        foreach ($prices as $p) {
+            if (($p - $basedNode) % $adjustmentValue != 0) {
+                // logger(1);
                 return response()->json([
                     'success' => true,
                     'data' => [
                         'minimum_operations' => -1
-                    ]
+                    ],
+                    'error' => null
                 ]);
             }
         }
 
-        sort($flatPrices);
-
-        $n = count($flatPrices);
-        $median = $flatPrices[intval($n / 2)];
-
-
-        $operations = 0;
-
-        foreach ($flatPrices as $price) {
-            $operations += abs($price - $median) / $x;
-        }
-
+        $target = $prices[(int) floor($prices->count() / 2)];
+        // logger("target => " . $target);
+        $operations = $prices->sum(function ($p) use ($target, $adjustmentValue) {
+            // logger("p => " . $p);
+            return abs($p - $target) / $adjustmentValue;
+        });
+        // logger("operation => " . json_encode($operations));
         return response()->json([
             'success' => true,
-            'data' => [
-                'minimum_operations' => $operations
-            ]
+            'data' => ['minimum_operations' => $operations],
+            'error' => null
         ]);
     }
+
 }
