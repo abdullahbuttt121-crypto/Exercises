@@ -6,13 +6,13 @@ use Illuminate\Http\Request;
 
 class Exercise_17 extends Controller
 {
-    public function shopifyPriceAdjustment(Request $request)
+    public function PriceShopifyAdjustment(Request $request)
     {
         $request->validate([
             "input" => "required",
             "input.adjustment_value" => "required|numeric",
-            "input.price" => "required|array",
-            "input.price.*." => "required|array",
+            "input.prices" => "required|array",
+            "input.prices.*" => "required|array",
         ]);
 
         $prices = $request->input('input.prices');

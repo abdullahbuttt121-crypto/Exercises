@@ -12,6 +12,7 @@ use App\Http\Controllers\Exercise_14;
 use App\Http\Controllers\Exercise_15;
 use App\Http\Controllers\Exercise_17;
 use App\Http\Controllers\Exercise_18;
+use App\Http\Controllers\Exercise_19;
 use App\Http\Controllers\Exercise_2;
 use App\Http\Controllers\Exercise_3;
 use App\Http\Controllers\Exercise_4;
@@ -45,3 +46,4 @@ Route::post("/exercise-15-shipping-rule", [Exercise_15::class , "shippingRuleHan
 Route::post("/exercise-16-fraud-check", [Exercise_16::class , "fraudCheckHandler"]);
 Route::post("/exercise-17-shopify-price-adjustment", [Exercise_17::class , "PriceShopifyAdjustment"]);
 Route::post("/exercise-18-data-sync", [Exercise_18::class , "dataSync"]);
+Route::post("/exercise-19-variant-control", [Exercise_19::class , "variantControl"]);
