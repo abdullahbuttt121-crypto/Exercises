@@ -2,6 +2,7 @@
 
 
 use App\Http\Controllers\Exercise_16;
+use App\Http\Controllers\Exercise_20;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Exercise_1;
 use App\Http\Controllers\Exercise_10;
@@ -47,3 +48,4 @@ Route::post("/exercise-16-fraud-check", [Exercise_16::class , "fraudCheckHandler
 Route::post("/exercise-17-shopify-price-adjustment", [Exercise_17::class , "PriceShopifyAdjustment"]);
 Route::post("/exercise-18-data-sync", [Exercise_18::class , "dataSync"]);
 Route::post("/exercise-19-variant-control", [Exercise_19::class , "variantControl"]);
+Route::post("/exercise-20-order-state", [Exercise_20::class , "orderState"]);
